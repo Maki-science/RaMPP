@@ -4,19 +4,19 @@
 #runGitHub( "Shiny-MP-spectra", "Maki-science")
 
 # for reactive plot content I adapted ideas of https://stackoverflow.com/questions/42104031/shiny-interactive-ggplot-with-vertical-line-and-data-labels-at-mouse-hover-poin
-require(ggplot2)
-require(shiny)
-require(pracma)
+#require(ggplot2)
+#require(shiny)
+#require(pracma)
 
-theme_set(theme( # Theme (Hintergrund, Textgröße, Text-Positionen und -Ausrichtung)
-  axis.text.x = element_text(size=10, angle=0, vjust=0.0), 
-  axis.text.y = element_text(size = 10), 
-  axis.title = element_text(size = 20), 
-  plot.title = element_text(hjust = 0.5), 
+ggplot2::theme_set(ggplot2::theme( # Theme (Hintergrund, Textgröße, Text-Positionen und -Ausrichtung)
+  axis.text.x = ggplot2::element_text(size=10, angle=0, vjust=0.0), 
+  axis.text.y = ggplot2::element_text(size = 10), 
+  axis.title = ggplot2::element_text(size = 20), 
+  plot.title = ggplot2::element_text(hjust = 0.5), 
   legend.position="top", 
-  panel.background = element_blank(), 
-  axis.line = element_line(size = 0.5),
-  panel.border = element_blank()
+  panel.background = ggplot2::element_blank(), 
+  axis.line = ggplot2::element_line(size = 0.5),
+  panel.border = ggplot2::element_blank()
 )
 )
 
@@ -245,7 +245,7 @@ server <- function(input, output, session){
           }
           # interpolate the NAs to have a smooth line (without gaps) in the graph
           od <- as.numeric(od)
-          od <- interp1(x = temp$wavenumber, y = od, xi = temp$wavenumber, "linear")
+          od <- pracma::interp1(x = temp$wavenumber, y = od, xi = temp$wavenumber, "linear")
         }
       }
     }
@@ -281,26 +281,26 @@ server <- function(input, output, session){
   
   output$plot.variants <- renderPlot({
     
-    g <- ggplot(plotData$temp, 
-                aes(x = wavenumber, 
+    g <- ggplot2::ggplot(plotData$temp, 
+                         ggplot2::aes(x = wavenumber, 
                     y = amp, 
                     group = interaction(incWater, v, sep = " | "),
                     colour = interaction(incWater, v, sep = " | ")
                 )
     )+
-      geom_line()+
-      coord_cartesian(xlim = c(500.51919, 3681.31383))+
-      ylab("Raman-Intensity")+
-      xlab( expression(Wavenumber~cm^{-1}) )+
-      scale_color_discrete(name = "Variant number | Incubation water")+ 
-      theme(axis.text.y = element_blank(),
-            axis.ticks.y = element_blank())+
-      scale_x_continuous(breaks = scales::pretty_breaks(n = 20))
+      ggplot2::geom_line()+
+      ggplot2::coord_cartesian(xlim = c(500.51919, 3681.31383))+
+      ggplot2::ylab("Raman-Intensity")+
+      ggplot2::xlab( expression(Wavenumber~cm^{-1}) )+
+      ggplot2::scale_color_discrete(name = "Variant number | Incubation water")+ 
+      ggplot2::theme(axis.text.y = ggplot2::element_blank(),
+            axis.ticks.y = ggplot2::element_blank())+
+      ggplot2::scale_x_continuous(breaks = scales::pretty_breaks(n = 20))
     
     if(values$loc > 400 && values$loc < 3700 && values$locy < max(plotData$temp$amp) && values$locy > 0){
       # reactive vertical line and text
-      g <- g+ geom_vline(aes(xintercept = values$loc), linetype = "dotted")+
-        geom_text(aes(x = values$loc,
+      g <- g+ ggplot2::geom_vline(ggplot2::aes(xintercept = values$loc), linetype = "dotted")+
+        ggplot2::geom_text(ggplot2::aes(x = values$loc,
                       y = 0.8,
                       label = suppressWarnings(
                         if(length(values$component > 1)){
@@ -325,26 +325,26 @@ server <- function(input, output, session){
   #### plot comparisons #####
   output$plot.comp <- renderPlot({
     
-    g <- ggplot(plotData.comp$temp, 
-                aes(x = wavenumber, 
+    g <- ggplot2::ggplot(plotData.comp$temp, 
+                         ggplot2::aes(x = wavenumber, 
                     y = amp, 
                     group = interaction(pol, factor(v), incWater, sep = " | "),
                     colour = interaction(pol, factor(v), incWater, sep = " | ")
                 )
     )+
-      geom_line()+
-      coord_cartesian(xlim = c(500.51919, 3681.31383))+
-      ylab("Raman-Intensity")+
-      xlab( expression(Wavenumber~cm^{-1}) )+ 
-      theme(axis.text.y = element_blank(),
-            axis.ticks.y = element_blank())+
-      scale_color_discrete(name = "Polymer | Variant number | Incubation water")+
-      scale_x_continuous(breaks = scales::pretty_breaks(n = 20))
+      ggplot2::geom_line()+
+      ggplot2::coord_cartesian(xlim = c(500.51919, 3681.31383))+
+      ggplot2::ylab("Raman-Intensity")+
+      ggplot2::xlab( expression(Wavenumber~cm^{-1}) )+ 
+      ggplot2::theme(axis.text.y = ggplot2::element_blank(),
+            axis.ticks.y = ggplot2::element_blank())+
+      ggplot2::scale_color_discrete(name = "Polymer | Variant number | Incubation water")+
+      ggplot2::scale_x_continuous(breaks = scales::pretty_breaks(n = 20))
     # reactive vertical line and text
     if(values$loc > 400 && values$loc < 3700 && values$locy < max(plotData.comp$temp$amp) && values$locy > 0){
       # reactive vertical line and text
-      g <- g+ geom_vline(aes(xintercept = values$loc), linetype = "dotted")+
-        geom_text(aes(x = values$loc,
+      g <- g+ ggplot2::geom_vline(ggplot2::aes(xintercept = values$loc), linetype = "dotted")+
+        ggplot2::geom_text(ggplot2::aes(x = values$loc,
                       y = 0.8,
                       label = suppressWarnings(
                         if(length(values$component > 1)){
@@ -369,25 +369,25 @@ server <- function(input, output, session){
   #### plot own ######
   output$plot.own <- renderPlot({
     
-    g <- ggplot(plotData.own$temp, 
-                aes(x = wavenumber, 
+    g <- ggplot2::ggplot(plotData.own$temp, 
+                         ggplot2::aes(x = wavenumber, 
                     y = amp, 
                     group = interaction(pol, factor(v), incWater, sep = " | "),
                     colour = interaction(pol, factor(v), incWater, sep = " | ")
                 )
     )+
-      geom_line(na.rm = TRUE)+
-      coord_cartesian(xlim = c(500.51919, 3681.31383))+
-      ylab("Raman-Intensity")+
-      xlab( expression(Wavenumber~cm^{-1}) )+
-      theme(axis.text.y = element_blank(),
-            axis.ticks.y = element_blank())+
-      scale_color_discrete(name = "Polymer | Variant number | Incubation water")+
-      scale_x_continuous(breaks = scales::pretty_breaks(n = 20))
+      ggplot2::geom_line(na.rm = TRUE)+
+      ggplot2::coord_cartesian(xlim = c(500.51919, 3681.31383))+
+      ggplot2::ylab("Raman-Intensity")+
+      ggplot2::xlab( expression(Wavenumber~cm^{-1}) )+
+      ggplot2::theme(axis.text.y = ggplot2::element_blank(),
+            axis.ticks.y = ggplot2::element_blank())+
+      ggplot2::scale_color_discrete(name = "Polymer | Variant number | Incubation water")+
+      ggplot2::scale_x_continuous(breaks = scales::pretty_breaks(n = 20))
     if(values$loc > 400 && values$loc < 3700 && values$locy < max(plotData.own$temp$amp, na.rm = TRUE) && values$locy > 0){
       # reactive vertical line and text
-      g <- g+ geom_vline(aes(xintercept = values$loc), linetype = "dotted")+
-        geom_text(aes(x = values$loc,
+      g <- g+ ggplot2::geom_vline(ggplot2::aes(xintercept = values$loc), linetype = "dotted")+
+        ggplot2::geom_text(ggplot2::aes(x = values$loc,
                       y = 0.8,
                       label = suppressWarnings(
                         if(length(values$component > 1)){
