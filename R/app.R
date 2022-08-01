@@ -23,11 +23,12 @@ ggplot2::theme_set(ggplot2::theme( # Theme (Hintergrund, Textgröße, Text-Posit
 # setwd("//btb1r2.bio.uni-bayreuth.de/home/PhD/Paper/Eigene/Vinay/Shiny MP spectra/")
 # read in prepared data 
 # this is just done to skip the time consuming step of preparing the data
-mydata <- read.table(
-  file = "prep_data", 
-  sep = ";",
-  dec = "."
-)
+# mydata <- read.table(
+#   file = "prep_data", 
+#   sep = ";",
+#   dec = "."
+# )
+mydata <- int.data[[2]]
 
 mydata$polV <- as.factor(mydata$polV)
 mydata$pol <- as.factor(mydata$pol)
@@ -52,14 +53,14 @@ polNames <- c("ABS: acrylnitrile-butadiene-styrole" = "ABS",
 waterAbr <- levels(mydata$incWater)
 waterNames <- c("freshwater (FW)" = "FW", "seawater (SW)" = "SW")
 
-# to provide further information about substance classes, we read another table with those information
-components <- read.table(
-  file = "components",
-  sep = "\t",
-  dec = ".",
-  header = TRUE
-)
-
+# # to provide further information about substance classes, we read another table with those information
+# components <- read.table(
+#   file = "components",
+#   sep = "\t",
+#   dec = ".",
+#   header = TRUE
+# )
+component <- int.data[[1]]
 
 server <- function(input, output, session){
   
@@ -413,25 +414,25 @@ server <- function(input, output, session){
 
 
 #### ui #####
-ui <- fluidPage(
-  fluidRow(
-    titlePanel(
-      h1("Shiny Raman-MP Spectra", align = "center")
+ui <- shiny::fluidPage(
+  shiny::fluidRow(
+    shiny::titlePanel(
+      shiny::h1("Raman spectra of Microplastic Particles' Plastisphere", align = "center")
     ),
-    column(12, style="font-size:1.4em", align = "center", tags$a(href="http://www.maki-science.org", "Spatio-chemical analysis of the plastisphere using Raman spectroscopy", target="_blank")),
-    column(12, style="font-size:0.8em", align = "center", "VKB Narayana, A. Ramsperger, M. Kiene, J. Brehm, M. Löder, C. Laforsch 2022"),
-    column(12, style="line-height:3em", align = "center", "Press 'ctrl' & '-' or '+' to adjust the object sizes if necessary."),
-    mainPanel(align = "center", width = 12,
-              tabsetPanel(
+    shiny::column(12, style="font-size:1.4em", align = "center", shiny::tags$a(href="http://www.maki-science.org", "Spatio-chemical analysis of the plastisphere using Raman spectroscopy", target="_blank")),
+    shiny::column(12, style="font-size:0.8em", align = "center", "VKB Narayana, A. Ramsperger, M. Kiene, J. Brehm, M. Löder, C. Laforsch 2022"),
+    shiny::column(12, style="line-height:3em", align = "center", "Press 'ctrl' & '-' or '+' to adjust the object sizes if necessary."),
+    shiny::mainPanel(align = "center", width = 12,
+              shiny::tabsetPanel(
                 ##### ui variants #####
-                tabPanel("Show Variants",
-                         column(6,
-                                selectInput("polType", 
+                shiny::tabPanel("Show Variants",
+                        shiny::column(6,
+                                shiny::selectInput("polType", 
                                             label = "Select polymer type:", 
                                             choices = polNames, 
                                             selected = "PET"
                                 ),
-                                sliderInput("nV", 
+                                shiny::sliderInput("nV", 
                                             label = "Number of variants (1 = pristine):", 
                                             min = 1, 
                                             max = max(mydata$v, na.rm = TRUE), 
@@ -439,117 +440,117 @@ ui <- fluidPage(
                                             step = 1
                                 ),
                          ),
-                         column(5, offset = 1,
-                                fluidRow(
-                                  checkboxInput("FW", 
+                        shiny::column(5, offset = 1,
+                               shiny::fluidRow(
+                                 shiny::checkboxInput("FW", 
                                                 label = "Fresh water samples (FW)", 
                                                 value = TRUE, 
                                                 width = NULL
                                   ),
                                 ),
-                                fluidRow(
-                                  checkboxInput("SW", 
+                               shiny::fluidRow(
+                                 shiny::checkboxInput("SW", 
                                                 label = "Sea water samples (SW)", 
                                                 value = TRUE, 
                                                 width = NULL
                                   )
                                 ),
-                                hr(),
-                                fluidRow(
-                                  checkboxInput("sep", 
+                               shiny::hr(),
+                               shiny::fluidRow(
+                                 shiny::checkboxInput("sep", 
                                                 label = "Separate spectra", 
                                                 value = FALSE, 
                                                 width = NULL
                                   )
                                 )
                          ),
-                         hr(),
-                         column(12, "Move your mouse over the graph to view meta data."),
-                         plotOutput(outputId = "plot.variants",
-                                    hover = hoverOpts(id = "plot_hover",
+                        shiny::hr(),
+                        shiny::column(12, "Move your mouse over the graph to view meta data."),
+                        shiny::plotOutput(outputId = "plot.variants",
+                                    hover = shiny::hoverOpts(id = "plot_hover",
                                                       delay = 40,
                                                       delayType = "debounce"
                                     )
                          )
                 ), # end tabPanel
                 ##### ui compare #####
-                tabPanel("Compare two Spectra",
-                         column(6,
-                                h4("Select the first spectrum:"),
-                                selectInput("comp.polType1", 
+                shiny::tabPanel("Compare two Spectra",
+                        shiny::column(6,
+                                shiny::h4("Select the first spectrum:"),
+                                shiny::selectInput("comp.polType1", 
                                             label = "Select polymer type:", 
                                             choices = polNames, 
                                             selected = "PET"
                                 ),
-                                selectInput("comp.variant1", 
+                                shiny::selectInput("comp.variant1", 
                                             label = "Select Variant number (1 = pristine):", 
                                             choices = c(1:max(mydata$v, na.rm = TRUE)), 
                                             selected = "1"
                                 ),
-                                selectInput("comp.water1", 
+                                shiny::selectInput("comp.water1", 
                                             label = "Select incubation water:", 
                                             choices = waterNames, 
                                             selected = "FW"
                                 )
                          ),
-                         column(6,
-                                h4("Select the second spectrum:"),
-                                selectInput("comp.polType2", 
+                        shiny::column(6,
+                                shiny::h4("Select the second spectrum:"),
+                                shiny::selectInput("comp.polType2", 
                                             label = "Select polymer type:", 
                                             choices = polNames, 
                                             selected = "PET"
                                 ),
-                                selectInput("comp.variant2", 
+                                shiny::selectInput("comp.variant2", 
                                             label = "Select Variant number (1 = pristine):", 
                                             choices = c(1:max(mydata$v, na.rm = TRUE)), 
                                             selected = "2"
                                 ),
-                                selectInput("comp.water2", 
+                                shiny::selectInput("comp.water2", 
                                             label = "Select incubation water:", 
                                             choices = waterNames, 
                                             selected = "FW"
                                 )
                          ),
-                         hr(),
-                         column(12, "Move your mouse over the graph to view meta data."),
-                         plotOutput(outputId = "plot.comp",
-                                    hover = hoverOpts(id = "plot_hover",
+                        shiny::hr(),
+                        shiny::column(12, "Move your mouse over the graph to view meta data."),
+                        shiny::plotOutput(outputId = "plot.comp",
+                                    hover = shiny::hoverOpts(id = "plot_hover",
                                                       delay = 40,
                                                       delayType = "debounce"
                                     ))
                 ), # end tabPanel
                 ##### ui own #####
-                tabPanel("Compare with own Spectrum",
-                         column(6,
-                                h4("Select spectrum to compare:"),
-                                selectInput("own.polType", 
+                shiny::tabPanel("Compare with own Spectrum",
+                        shiny::column(6,
+                                shiny::h4("Select spectrum to compare:"),
+                                shiny::selectInput("own.polType", 
                                             label = "Select polymer type:", 
                                             choices = polNames, 
                                             selected = "PET"
                                 ),
-                                selectInput("own.variant", 
+                                shiny::selectInput("own.variant", 
                                             label = "Select Variant number (1 = pristine):", 
                                             choices = c(1:max(mydata$v, na.rm = TRUE)), 
                                             selected = "1"
                                 ),
-                                selectInput("own.water", 
+                                shiny::selectInput("own.water", 
                                             label = "Select incubation water:", 
                                             choices = c("fresh water" = "FW", "sea water" = "SW"), 
                                             selected = "FW"
                                 )
                          ),
-                         column(6,
-                                h4("Your own Spectrum"),
-                                textAreaInput("own.spec",
+                        shiny::column(6,
+                                shiny::h4("Your own Spectrum"),
+                                shiny::textAreaInput("own.spec",
                                               label = "Insert Vector of your spectrum:",
                                               placeholder = "copy and paste from excel file column..."
                                 ),
                                 "note: if your resolution is higher/lower, your spectrum will be compressed/streched accordingly"
                          ),
-                         hr(),
-                         column(12, "Move your mouse over the graph to view meta data."),
-                         plotOutput(outputId = "plot.own",
-                                    hover = hoverOpts(id = "plot_hover",
+                        shiny::hr(),
+                        shiny::column(12, "Move your mouse over the graph to view meta data."),
+                        shiny::plotOutput(outputId = "plot.own",
+                                    hover = shiny::hoverOpts(id = "plot_hover",
                                                       delay = 40,
                                                       delayType = "debounce"
                                     ))
@@ -571,4 +572,4 @@ ui <- fluidPage(
   # )
 ) # end fluidPage ; end ui
 
-shinyApp(ui = ui, server = server)
+shiny::shinyApp(ui = ui, server = server)
