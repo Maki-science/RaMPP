@@ -19,7 +19,7 @@ A data frame with 206400 rows and 6 variables:
 \url{http://www.link-to-publication}
 }
 \usage{
-specData
+data(specData)
 }
 \description{
 A data set containing Raman spectra of 11 polymers and their plastisphere after incubation 

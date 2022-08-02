@@ -4,6 +4,7 @@
 #' in fresh and sea water. Details how the spectra were recorded can be taken from the
 #' corresponding publication. The dataset was already processed and ready to plot.
 #'
+#' @usage data(specData)
 #' @format A data frame with 206400 rows and 6 variables:
 #' \describe{
 #'   \item{wavenumber}{the wavenumber of the corresponding amplitude (amp)}
