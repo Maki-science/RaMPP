@@ -3,4 +3,5 @@
 export(RaMPP.lib)
 import(ggplot2)
 import(pracma)
+import(scales)
 import(shiny)

@@ -1,0 +1,21 @@
+citHeader("To cite RaMPP in publications use the original paper where RaMPP was introduced:")
+
+citEntry(
+  entry    = "Article",
+  title    = "Spatio-chemical analysis of the plastisphere using Raman spectroscopy",
+  author   = c(person(c("Vinay", "B.", "N."), "Kumar"),
+              person("Anja", "Ramsperger"),
+              person("Marvin", "Kiene"),
+              person("Julian", "Brehm"),
+              person(c("Martin", "G.", "J."), "Löder"),
+              person("Christian", "Laforsch")),
+  journal  = "a journal",
+  year     = 2022,
+  volume   = 5,
+  number   = 5,
+  pages    = 5,
+  doi      = "https://doi.org/10.3390/d12040147",
+  url      = "maki@maki-science.org",
+  textVersion = paste(
+  )
+)

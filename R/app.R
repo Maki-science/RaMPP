@@ -3,10 +3,10 @@
 #'
 #' @description
 #' This function runs the shiny app that provides easy and interactive access and 
-#' vizualisation of the Raman spectres of RaMPP. Additionally, this app allows the 
-#' comparison of the available spectra and also with a user input spectrum.Upon mouse hovering 
-#' on the provided graphs, it will further show which components underly the current positions'
-#' pectrum and wether this is a typical peak for a certain polymer.
+#' visualization of the Raman spectra of 'RaMPP'. Additionally, this app allows the 
+#' comparison of the available spectra and also with a user input spectrum. Upon mouse hovering 
+#' on the provided graphs, it will further show which components underlie the current positions'
+#' spectrum and whether this is a typical peak for a certain polymer.
 #'
 #' 
 #' @example RaMPP.lib() # this will directly start the shiny app
@@ -17,6 +17,7 @@
 #' @import shiny
 #' @import pracma
 #' @import ggplot2
+#' @import scales
 #'
 RaMPP.lib <- function(){
   # this is a fast and easy way to publish the app, but the user has to run it in his/her own R environment
@@ -26,7 +27,7 @@ RaMPP.lib <- function(){
   
   # for reactive plot content I adapted ideas of https://stackoverflow.com/questions/42104031/shiny-interactive-ggplot-with-vertical-line-and-data-labels-at-mouse-hover-poin
 
-  ggplot2::theme_set(ggplot2::theme( # Theme (Hintergrund, Textgröße, Text-Positionen und -Ausrichtung)
+  ggplot2::theme_set(ggplot2::theme(
     axis.text.x = ggplot2::element_text(size=10, angle=0, vjust=0.0), 
     axis.text.y = ggplot2::element_text(size = 10), 
     axis.title = ggplot2::element_text(size = 20), 
@@ -39,7 +40,7 @@ RaMPP.lib <- function(){
   )
   
   # read in prepared data
-  mydata <- mydata #get0("specData", envir = asNamespace("RaMPP"))
+  mydata <- mydata
 
   
   # to provide easily understandable content for user, we need the full names of polymers
@@ -258,7 +259,7 @@ RaMPP.lib <- function(){
                         polV = "your.V1",
                         v = 1,
                         incWater = "n.a."
-      )
+                        )
       
       temp <- rbind(temp, own)
       temp$amp <- as.numeric(temp$amp)
@@ -421,7 +422,7 @@ RaMPP.lib <- function(){
         shiny::h1("Raman spectra of Microplastic Particles' Plastisphere", align = "center")
       ),
       shiny::column(12, style="font-size:1.4em", align = "center", shiny::tags$a(href="http://www.maki-science.org", "Spatio-chemical analysis of the plastisphere using Raman spectroscopy", target="_blank")),
-      shiny::column(12, style="font-size:0.8em", align = "center", "VKB Narayana, A. Ramsperger, M. Kiene, J. Brehm, M. Löder, C. Laforsch 2022"),
+      shiny::column(12, style="font-size:0.8em", align = "center", "V.B.N. Kumar, A. Ramsperger, M. Kiene, J. Brehm, M.G.J. L\u00F6der, C. Laforsch 2022"),
       shiny::column(12, style="line-height:3em", align = "center", "Press 'ctrl' & '-' or '+' to adjust the object sizes if necessary."),
       shiny::mainPanel(align = "center", width = 12,
                 shiny::tabsetPanel(
@@ -559,18 +560,6 @@ RaMPP.lib <- function(){
                 ) # end tabsetPanel
       ) # end mainPanel
     )#, # end row
-    # fluidRow(style = "width:100%;",
-    #          mainPanel("Find the corresponding publication to this app at ", tags$a(href="http://www.maki-science.org", "(to be changed)", target="_blank"),
-    #                    align = "center", 
-    #                    style = "
-    #                  position:absolute;
-    #                  bottom:0;
-    #                  width:100%;
-    #                  color: white;
-    #                  padding: 10px;
-    #                  background-color: lightgrey;"
-    #          )
-    # )
   ) # end fluidPage ; end ui
   
   shiny::shinyApp(ui = ui, server = server)

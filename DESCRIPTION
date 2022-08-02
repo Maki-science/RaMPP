@@ -20,7 +20,7 @@ Description: A library of Raman spectra of mircroplastic particles.
     spectrum and wether this is a typical peak for a certain polymer.
 URL: TODO: add URL of package page
 BugReports: https://github.com/Maki-science/RaMPP/issues
-License: GNU 3
+License: CC BY 4.0
 Encoding: UTF-8
 LazyData: true
 Suggests: 
@@ -32,5 +32,6 @@ Depends:
 Imports: 
     ggplot2,
     pracma,
-    shiny
+    shiny,
+    scales
 RoxygenNote: 7.2.1
