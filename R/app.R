@@ -1,17 +1,25 @@
 ######## RaMPP.lib() #####
-#' RaMPP.lib
+#' Show RaMPP library
 #'
 #' @description
-#' This function runs the shiny app that provides easy and interactive access and 
-#' visualization of the Raman spectra of 'RaMPP'. Additionally, this app allows the 
-#' comparison of the available spectra and also with a user input spectrum. Upon mouse hovering 
-#' on the provided graphs, it will further show which components underlie the current positions'
-#' spectrum and whether this is a typical peak for a certain polymer.
-#'
+#' Runs the shiny app that provides easy and interactive access and 
+#' visualization of the Raman spectra of Microplastic Particles Plastisphere of 'RaMPP'. 
+#' Additionally, this app allows the comparison of the available spectra and also with 
+#' a user input spectrum. Upon mouse hovering on the provided graphs, it will further 
+#' show which components underlie the current positions'spectrum and whether this is a 
+#' typical peak for a certain polymer.
+#' The app is self-explaining. Just start and explore.
 #' 
-#' @example RaMPP.lib() # this will directly start the shiny app
+#' @examples 
+#' if(interactive()){
+#'   RaMPP.lib() # starts the app
+#' }
 #' 
+#' 
+#' @usage RaMPP.lib()  
+#' @seealso data("specData"), which can be used to load the library data into the environment
 #' @references TODO: Link to the Publication
+#' 
 #' 
 #' @export
 #' @import shiny
@@ -39,10 +47,13 @@ RaMPP.lib <- function(){
   )
   )
   
+  
   # read in prepared data
   mydata <- mydata
 
-  
+  # to provide further information about substance classes, we read another table with those information
+  components <- components 
+
   # to provide easily understandable content for user, we need the full names of polymers
   polAbr <- levels(mydata$pol)
   polNames <- c("ABS: acrylnitrile-butadiene-styrole" = "ABS", 
@@ -60,8 +71,6 @@ RaMPP.lib <- function(){
   waterAbr <- levels(mydata$incWater)
   waterNames <- c("freshwater (FW)" = "FW", "seawater (SW)" = "SW")
   
-  # # to provide further information about substance classes, we read another table with those information
-  components <- components 
   
   
   server <- function(input, output, session){
@@ -419,7 +428,7 @@ RaMPP.lib <- function(){
   ui <- shiny::fluidPage(
     shiny::fluidRow(
       shiny::titlePanel(
-        shiny::h1("Raman spectra of Microplastic Particles' Plastisphere", align = "center")
+        shiny::h1("Raman spectral library of Microplastics with Plastisphere", align = "center")
       ),
       shiny::column(12, style="font-size:1.4em", align = "center", shiny::tags$a(href="http://www.maki-science.org", "Spatio-chemical analysis of the plastisphere using Raman spectroscopy", target="_blank")),
       shiny::column(12, style="font-size:0.8em", align = "center", "V.B.N. Kumar, A. Ramsperger, M. Kiene, J. Brehm, M.G.J. L\u00F6der, C. Laforsch 2022"),
@@ -564,3 +573,4 @@ RaMPP.lib <- function(){
   
   shiny::shinyApp(ui = ui, server = server)
 }
+

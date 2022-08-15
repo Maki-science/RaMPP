@@ -1,18 +1,45 @@
 Package: RaMPP
 Type: Package
-Title: Raman spectra of Microplastic Particles' Plastisphere
+Title: Raman Spectral Library of Microplastics with Plastisphere
 Version: 0.9.0
-Authors@R: person(
-  "Marvin", "Kiene",
-  email = "info@Maki-Science.org",
-  role = c("aut", "cre"),
-  comment = c(ORCID = "0000-0001-9981-5661"))
+Authors@R: c(person(
+              c("Vinay", "B.N."), "Kumar",
+              role = c("aut"),
+              comment = c(ORCID = "0000-0001-9981-5661")
+              ),
+            person(
+              "Anja", "Ramsperger",
+              role = c("aut"),
+              comment = c(ORCID = "0000-0001-9981-5661")
+              ),
+            person(
+              "Marvin", "Kiene",
+              email = "info@Maki-Science.org",
+              role = c("aut", "cre"),
+              comment = c(ORCID = "0000-0001-9981-5661")
+              ),
+            person(
+              "Julian", "Brehm",
+              role = c("aut"),
+              comment = c(ORCID = "0000-0001-9981-5661")
+              ),
+            person(
+              c("Martin", "G.J."), "L\u00F6der",
+              role = c("aut"),
+              comment = c(ORCID = "0000-0001-9981-5661")
+              ),
+            person(
+              "Christian", "Laforsch",
+              role = c("aut"),
+              comment = c(ORCID = "0000-0001-9981-5661")
+              )
+            )
 Maintainer: Marvin Kiene <info@Maki-Science.org>
 Description: A library of Raman spectra of mircroplastic particles.
     Spectra are available for 11 different polymers. Each comes along with a bunch of
     spectra for freshwater and sea water incubated particles. Those have created the
     so-called plastisphere. A surrounding layer of microorganism-born biomolecules like,
-    for example, carrotinoids. The data can be accessed directly (provided through this package),
+    for example, carrotenoids. The data can be accessed directly (provided through this package),
     or via the provided shiny app. The app provides easy and interactive access and
     vizualisation of the Raman spectres of 'RaMPP'. Additionally, this app allows the
     comparison of the available spectra and also with a user input spectrum. Upon mouse hovering 

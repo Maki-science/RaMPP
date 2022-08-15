@@ -1,8 +1,8 @@
 ---
-title: "RaMPP"
+title: "Raman spectral library of Microplastics with Plastisphere - RaMPP"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{RaMPP}
+  %\VignetteIndexEntry{Raman spectral library of Microplastics with Plastisphere - RaMPP}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -14,6 +14,51 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r setup}
+A library of Raman spectra of mircroplastic particles.
+Spectra are available for 11 different polymers. Each comes along with a bunch of
+spectra for freshwater and sea water incubated particles. Those have created the
+so-called plastisphere. A surrounding layer of microorganism-born biomolecules like,
+for example, carrotinoids. The data can be accessed directly (provided through this package),
+or via the provided shiny app. The app provides easy and interactive access and
+vizualisation of the Raman spectres of 'RaMPP'. Additionally, this app allows the
+comparison of the available spectra and also with a user input spectrum. Upon mouse hovering 
+on the provided graphs, it will further show which components underly the current positions'
+spectrum and wether this is a typical peak for a certain polymer.
+
+
+# Setup
+You can install the package directly from CRAN or also from the github-repository:
+```{r installation, eval = FALSE}
+# TODO
+```
+
+After installation, you should attach the library to your environment:
+```{r setup, eval = FALSE}
 library(RaMPP)
 ```
+
+# Usage
+
+## Calling the shiny app
+To use the shiny app, included in this package, just run the following line. The RaMPP-library app will show up after a few seconds.
+```{r start app, eval = FALSE}
+RaMPP.lib()
+```
+
+Detailed information about the spectra, and how they were generated, can be reviewed in the corresponding publication (TODO: add link to publication). 
+
+There are three possible ways to access the spectral library, which are separated by three tabs at the top of the interface. Below the three tabs the corresponding input panel is located. Here, the MPs type can be selected and the number of plastisphere MPs variants can be chosen, while 1 always represents the pristine MPs. On the right side of the input panel, it can be chosen, whether to show variants of FW or SW incubated particles or both. Additionally, there is the option to separate the spectrum along the y-axis for a better overview over many spectra, like shown in this figure. Further below, Raman spectra will be shown in the selected configuration with the Raman intensity as an arbitrary unit on the y-axis and the wavenumber on the x-axis. The legend at the top of the graph informs the user about the colour code. Wavenumber range below 400 cm-1 are not shown, as there is no meaningful information in this part of the spectrum. The colours indicate the different spectra. Additionally, meta data can be accessed/provided, when moving the cursor over the graph. A vertical line will appear indicating the currently selected wavenumber position. When meta data for a certain wavenumber is available, the wavenumber and additional information are shown at the top of the vertical line, providing information about the substance class, that can be found at this specific wavenumber. When moving the mouse towards the corner of the graph, the vertical line will disappear again. See the main text for further information.
+
+
+## Loading the underlying data
+To access the underlying data of this package and the corresponding app, you can simply load the whole Raman spectra into your environment:
+```{r get data, eval = FALSE}
+data("specData")
+```
+
+
+
+# Issues
+If you face any issues with this package, or want to suggest addons or improvements, head to https://github.com/Maki-science/RaMPP/issues and open a new issue. We will try to keep on track as soon as possible.
+
+

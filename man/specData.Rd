@@ -16,7 +16,7 @@ A data frame with 206400 rows and 6 variables:
 }
 }
 \source{
-\url{http://www.link-to-publication}
+\url{http://www.maki-science.org}
 }
 \usage{
 data(specData)
@@ -25,5 +25,19 @@ data(specData)
 A data set containing Raman spectra of 11 polymers and their plastisphere after incubation 
 in fresh and sea water. Details how the spectra were recorded can be taken from the
 corresponding publication. The dataset was already processed and ready to plot.
+}
+\examples{
+# load data from package 
+specData <- data("specData")
+
+# get a summary
+summary(specData)
+
+# see which polymers are included in the data set
+levels(specData$pol)
+
+}
+\seealso{
+RaMPP.lib()
 }
 \keyword{datasets}

@@ -3,11 +3,11 @@ citHeader("To cite RaMPP in publications use the original paper where RaMPP was 
 citEntry(
   entry    = "Article",
   title    = "Spatio-chemical analysis of the plastisphere using Raman spectroscopy",
-  author   = c(person(c("Vinay", "B.", "N."), "Kumar"),
+  author   = c(person(c("Vinay", "B.N."), "Kumar"),
               person("Anja", "Ramsperger"),
               person("Marvin", "Kiene"),
               person("Julian", "Brehm"),
-              person(c("Martin", "G.", "J."), "Löder"),
+              person(c("Martin", "G.J."), "L\u00F6der"),
               person("Christian", "Laforsch")),
   journal  = "a journal",
   year     = 2022,

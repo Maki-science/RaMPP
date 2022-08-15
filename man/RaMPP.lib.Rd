@@ -2,17 +2,29 @@
 % Please edit documentation in R/app.R
 \name{RaMPP.lib}
 \alias{RaMPP.lib}
-\title{RaMPP.lib}
+\title{Show RaMPP library}
 \usage{
 RaMPP.lib()
 }
 \description{
-This function runs the shiny app that provides easy and interactive access and 
-visualization of the Raman spectra of 'RaMPP'. Additionally, this app allows the 
-comparison of the available spectra and also with a user input spectrum. Upon mouse hovering 
-on the provided graphs, it will further show which components underlie the current positions'
-spectrum and whether this is a typical peak for a certain polymer.
+Runs the shiny app that provides easy and interactive access and 
+visualization of the Raman spectra of Microplastic Particles Plastisphere of 'RaMPP'. 
+Additionally, this app allows the comparison of the available spectra and also with 
+a user input spectrum. Upon mouse hovering on the provided graphs, it will further 
+show which components underlie the current positions'spectrum and whether this is a 
+typical peak for a certain polymer.
+The app is self-explaining. Just start and explore.
+}
+\examples{
+if(interactive()){
+  RaMPP.lib() # starts the app
+}
+
+
 }
 \references{
 TODO: Link to the Publication
+}
+\seealso{
+data("specData"), which can be used to load the library data into the environment
 }

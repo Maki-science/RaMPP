@@ -3,7 +3,17 @@
 #' A data set containing Raman spectra of 11 polymers and their plastisphere after incubation 
 #' in fresh and sea water. Details how the spectra were recorded can be taken from the
 #' corresponding publication. The dataset was already processed and ready to plot.
-#'
+#' @examples
+#' # load data from package 
+#' specData <- data("specData")
+#' 
+#' # get a summary
+#' summary(specData)
+#' 
+#' # see which polymers are included in the data set
+#' levels(specData$pol)
+#' 
+#' @seealso RaMPP.lib()
 #' @usage data(specData)
 #' @format A data frame with 206400 rows and 6 variables:
 #' \describe{
@@ -14,5 +24,5 @@
 #'   \item{incWater}{the incubation water of the corresponding particle (fresh or sea water)}
 #'   \item{polV}{combination of pol and v to have unique identifier, e.g., for plotting}
 #' }
-#' @source \url{http://www.link-to-publication}
+#' @source \url{http://www.maki-science.org}
 "specData"
