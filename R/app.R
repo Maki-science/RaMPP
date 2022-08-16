@@ -28,11 +28,6 @@
 #' @import scales
 #'
 RaMPP.lib <- function(){
-  # this is a fast and easy way to publish the app, but the user has to run it in his/her own R environment
-  #install.packages("shiny")
-  #require(shiny)
-  #runGitHub( "Shiny-MP-spectra", "Maki-science")
-  
   # for reactive plot content I adapted ideas of https://stackoverflow.com/questions/42104031/shiny-interactive-ggplot-with-vertical-line-and-data-labels-at-mouse-hover-poin
 
   ggplot2::theme_set(ggplot2::theme(
@@ -262,7 +257,7 @@ RaMPP.lib <- function(){
         }
       }
       
-      own <- data.frame(wavenumber = temp$wavenumber,amp = od,pol = "your polymer",polV = "your.V1", v = 1,incWater = "n.a.")
+      own <- data.frame(wavenumber = temp$wavenumber, amp = od, pol = "your polymer", polV = "your.V1", v = 1, incWater = "n.a.")
       
       temp <- rbind(temp, own)
       temp$amp <- as.numeric(temp$amp)
@@ -332,10 +327,10 @@ RaMPP.lib <- function(){
     output$plot.comp <- renderPlot({
       
       g <- ggplot2::ggplot(plotData.comp$temp, 
-                           ggplot2::aes(x = plotData$temp$wavenumber, 
-                      y = plotData$temp$amp, 
-                      group = interaction(plotData$temp$pol, factor(plotData$temp$v), plotData$temp$incWater, sep = " | "),
-                      colour = interaction(plotData$temp$pol, factor(plotData$temp$v), plotData$temp$incWater, sep = " | ")
+                           ggplot2::aes(x = plotData.comp$temp$wavenumber, 
+                      y = plotData.comp$temp$amp, 
+                      group = interaction(plotData.comp$temp$pol, factor(plotData.comp$temp$v), plotData.comp$temp$incWater, sep = " | "),
+                      colour = interaction(plotData.comp$temp$pol, factor(plotData.comp$temp$v), plotData.comp$temp$incWater, sep = " | ")
                   )
       )+
         ggplot2::geom_line()+
@@ -376,10 +371,10 @@ RaMPP.lib <- function(){
     output$plot.own <- renderPlot({
       
       g <- ggplot2::ggplot(plotData.own$temp, 
-                           ggplot2::aes(x = plotData$temp$wavenumber, 
-                      y = plotData$temp$amp, 
-                      group = interaction(plotData$temp$pol, factor(plotData$temp$v), plotData$temp$incWater, sep = " | "),
-                      colour = interaction(plotData$temp$pol, factor(plotData$temp$v), plotData$temp$incWater, sep = " | ")
+                           ggplot2::aes(x = plotData.own$temp$wavenumber, 
+                      y = plotData.own$temp$amp, 
+                      group = interaction(plotData.own$temp$pol, factor(plotData.own$temp$v), plotData.own$temp$incWater, sep = " | "),
+                      colour = interaction(plotData.own$temp$pol, factor(plotData.own$temp$v), plotData.own$temp$incWater, sep = " | ")
                   )
       )+
         ggplot2::geom_line(na.rm = TRUE)+
