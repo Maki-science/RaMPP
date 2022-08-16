@@ -19,7 +19,7 @@ A data frame with 206400 rows and 6 variables:
 \url{http://www.maki-science.org}
 }
 \usage{
-data(specData)
+data("specData", envir = environment())
 }
 \description{
 A data set containing Raman spectra of 11 polymers and their plastisphere after incubation 
@@ -28,7 +28,7 @@ corresponding publication. The dataset was already processed and ready to plot.
 }
 \examples{
 # load data from package 
-specData <- data("specData")
+data("specData", envir = environment())
 
 # get a summary
 summary(specData)

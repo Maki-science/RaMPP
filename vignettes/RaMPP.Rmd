@@ -53,7 +53,7 @@ There are three possible ways to access the spectral library, which are separate
 ## Loading the underlying data
 To access the underlying data of this package and the corresponding app, you can simply load the whole Raman spectra into your environment:
 ```{r get data, eval = FALSE}
-data("specData")
+data("specData", envir = environment())
 ```
 
 

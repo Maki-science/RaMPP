@@ -5,7 +5,7 @@
 #' corresponding publication. The dataset was already processed and ready to plot.
 #' @examples
 #' # load data from package 
-#' specData <- data("specData")
+#' data("specData", envir = environment())
 #' 
 #' # get a summary
 #' summary(specData)
@@ -14,7 +14,7 @@
 #' levels(specData$pol)
 #' 
 #' @seealso RaMPP.lib()
-#' @usage data(specData)
+#' @usage data("specData", envir = environment())
 #' @format A data frame with 206400 rows and 6 variables:
 #' \describe{
 #'   \item{wavenumber}{the wavenumber of the corresponding amplitude (amp)}

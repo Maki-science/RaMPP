@@ -26,5 +26,5 @@ if(interactive()){
 TODO: Link to the Publication
 }
 \seealso{
-data("specData"), which can be used to load the library data into the environment
+data("specData", envir = environment()), which can be used to load the library data into the environment
 }

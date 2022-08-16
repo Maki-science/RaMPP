@@ -1,7 +1,7 @@
 Package: RaMPP
 Type: Package
 Title: Raman Spectral Library of Microplastics with Plastisphere
-Version: 0.9.0
+Version: 0.9.6
 Authors@R: c(person(
               c("Vinay", "B.N."), "Kumar",
               role = c("aut"),
@@ -41,10 +41,10 @@ Description: A library of Raman spectra of mircroplastic particles.
     so-called plastisphere. A surrounding layer of microorganism-born biomolecules like,
     for example, carrotenoids. The data can be accessed directly (provided through this package),
     or via the provided shiny app. The app provides easy and interactive access and
-    vizualisation of the Raman spectres of 'RaMPP'. Additionally, this app allows the
+    visualization of the Raman spectres of 'RaMPP'. Additionally, this app allows the
     comparison of the available spectra and also with a user input spectrum. Upon mouse hovering 
-    on the provided graphs, it will further show which components underly the current positions'
-    spectrum and wether this is a typical peak for a certain polymer.
+    on the provided graphs, it will further show which components underlie the current positions'
+    spectrum and whether this is a typical peak for a certain polymer.
 URL: TODO: add URL of package page
 BugReports: https://github.com/Maki-science/RaMPP/issues
 License: CC BY 4.0

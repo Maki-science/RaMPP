@@ -11,7 +11,7 @@ particles, in most cases, do not establish an accurate spectral match to
 its pristine counterpart. We performed a study on how the Raman spectra
 of a range of microplastic particles were investigated.Those have
 created the so-called plastisphere. A surrounding layer of
-microorganism-born biomolecules like, for example, carrotinoids. The
+microorganism-born biomolecules like, for example, carrotenoids. The
 corresponding study can be found [here (TODO)](maki-science.org) for
 further reading.
 
@@ -22,11 +22,11 @@ particles.
 
 The data can be accessed directly (provided through this package), or
 via the provided shiny app. The app provides easy and interactive access
-and vizualisation of the Raman spectres of *RaMPP*. Additionally, this
+and visualization of the Raman spectres of *RaMPP*. Additionally, this
 app allows the comparison of the available spectra and also with a user
 input spectrum. Upon mouse hovering on the provided graphs, it will
-further show which components underly the current positions’ spectrum
-and wether this is a typical peak for a certain polymer.
+further show which components underlie the current positions’ spectrum
+and whether this is a typical peak for a certain polymer.
 
 ## Installation
 
@@ -53,5 +53,5 @@ The underlying data for this app can be accessed directly by loading
 into the environment:
 
 ``` r
-mydata <- data("specData")
+data("specData", envir = environment())
 ```
